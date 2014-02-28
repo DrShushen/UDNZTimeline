@@ -1,0 +1,543 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>UDNZTimeline by uonun</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">UDNZTimeline</h1>
+        <p class="header">A light javascript library supporting multiple browsers to draw smart, beauty and dynamic timelines.</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/uonun/UDNZTimeline/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/uonun/UDNZTimeline/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/uonun/UDNZTimeline">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/uonun">uonun</a></p>
+
+
+      </header>
+      <section>
+        <h1>
+<a name="udnztimeline" class="anchor" href="#udnztimeline"><span class="octicon octicon-link"></span></a>UDNZTimeline</h1>
+
+<h2>
+<a name="overview" class="anchor" href="#overview"><span class="octicon octicon-link"></span></a>Overview</h2>
+
+<ul>
+<li>It is a light javascript library.</li>
+<li>For helping you to build a smart, beauty and dynamic timeline.</li>
+<li>Based on HTML5, CSS3 and jQuery.</li>
+<li>Supporting Chrome, Opera, Safari, and IE 9+ on PC/MAC and mobile(IPad, Android, Windows Phone).</li>
+</ul><h2>
+<a name="demo" class="anchor" href="#demo"><span class="octicon octicon-link"></span></a>Demo</h2>
+
+<ul>
+<li><a href="http://work.udnz.com/UDNZTimeline/Demo/">http://work.udnz.com/UDNZTimeline/Demo/</a></li>
+</ul><h2>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h2>
+
+<ul>
+<li>Javascript with jQuery.</li>
+<li>Modern browser which is supporting HTML5 and CSS3.</li>
+</ul><h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<ol>
+<li>
+<p>Include <code>timeline.css</code>, <code>jQuery.min.js</code> and <code>timeline.js</code></p>
+
+<pre><code>&lt;link rel="stylesheet" href="path/to/timeline.css"/&gt;
+&lt;script src="path/to/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="path/to/timeline.js"&gt;&lt;/script&gt;
+</code></pre>
+</li>
+<li>
+<p>Set up an element with an ID to handle the timeline.</p>
+
+<pre><code>&lt;div id="demo_1_container"&gt;&lt;/div&gt;
+</code></pre>
+</li>
+<li>
+<p>Instantiate with <code>options</code>. If you are using multiple timelines in one page, <code>options</code> can be set on each individual timeline:<br></p>
+
+<p>See API: <a href="#options">Options</a></p>
+
+<pre><code>$.UDNZTimeline({
+    "data_url": "url/or/path/to/data.json",
+    "container": {
+        "id": "demo_1_container"
+    }
+}).Draw();
+</code></pre>
+</li>
+<li>
+<p>Build your data.</p>
+
+<p>See API: <a href="#data-structure">Data structure</a>.</p>
+</li>
+<li><p>Enjoy it!</p></li>
+</ol><h2>
+<a name="sample" class="anchor" href="#sample"><span class="octicon octicon-link"></span></a>Sample</h2>
+
+<div class="highlight highlight-HTML"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span>UDNZTimeline by udnz.com<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"path/to/timeline.css"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"path/to/jquery.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"path/to/timeline.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;script&gt;</span>
+        <span class="nx">$</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="nx">$</span><span class="p">.</span><span class="nx">UDNZTimeline</span><span class="p">({</span>
+                <span class="s2">"data_url"</span><span class="o">:</span> <span class="s2">"url/or/path/to/data.json"</span><span class="p">,</span>
+                <span class="s2">"container"</span><span class="o">:</span> <span class="p">{</span>
+                    <span class="s2">"id"</span><span class="o">:</span> <span class="s2">"demo_1_container"</span>
+                <span class="p">}</span>
+            <span class="p">}).</span><span class="nx">Draw</span><span class="p">();</span>
+        <span class="p">});</span>
+    <span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"demo_1_container"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+
+<h2>
+<a name="api" class="anchor" href="#api"><span class="octicon octicon-link"></span></a>API</h2>
+
+<h3>
+<a name="options" class="anchor" href="#options"><span class="octicon octicon-link"></span></a>Options</h3>
+
+<p>Like other javascript librarys, you can define an <code>option</code> in JSON as well. Here are the structure and meanings:</p>
+
+<h4>
+<a name="structure-and-default-values" class="anchor" href="#structure-and-default-values"><span class="octicon octicon-link"></span></a>Structure and default values</h4>
+
+<div class="highlight highlight-Javascript"><pre>    <span class="c1">// default values</span>
+    <span class="kd">var</span> <span class="nx">defaults</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"data_url"</span><span class="o">:</span> <span class="s2">"Data/timeline-nodes.json"</span><span class="p">,</span>
+        <span class="s2">"container"</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">"id"</span><span class="o">:</span> <span class="s2">"timeline_container"</span><span class="p">,</span>
+            <span class="s2">"width"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s2">"height"</span><span class="o">:</span> <span class="mi">250</span>
+        <span class="p">},</span>
+        <span class="s2">"figure"</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">"offset"</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">x</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="nx">y</span><span class="o">:</span> <span class="mi">0</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">"dots"</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">"states"</span><span class="o">:</span> <span class="p">{</span>
+                <span class="s2">"normal"</span><span class="o">:</span> <span class="p">{</span>
+                    <span class="s2">"_stateId"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+                    <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#C3C3C3"</span><span class="p">,</span>
+                    <span class="s2">"color_background"</span><span class="o">:</span> <span class="s2">"#ffffff"</span><span class="p">,</span>
+                    <span class="s2">"radius"</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+                    <span class="s2">"border"</span><span class="o">:</span> <span class="mi">12</span>
+                <span class="p">},</span>
+                <span class="s2">"active"</span><span class="o">:</span> <span class="p">{</span>
+                    <span class="s2">"_stateId"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#ff8800"</span><span class="p">,</span>
+                    <span class="s2">"color_background"</span><span class="o">:</span> <span class="s2">"#ffffff"</span><span class="p">,</span>
+                    <span class="s2">"radius"</span><span class="o">:</span> <span class="mi">15</span><span class="p">,</span>
+                    <span class="s2">"border"</span><span class="o">:</span> <span class="mi">5</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="s2">"offsetY"</span><span class="o">:</span> <span class="mi">50</span>
+        <span class="p">},</span>
+        <span class="s2">"lines"</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"solid"</span><span class="p">,</span>
+            <span class="s2">"width"</span><span class="o">:</span> <span class="mi">8</span><span class="p">,</span>
+            <span class="s2">"color"</span><span class="o">:</span> <span class="s2">"#C3C3C3"</span><span class="p">,</span>
+            <span class="s2">"color_dotted"</span><span class="o">:</span> <span class="s2">"#C3C3C3"</span><span class="p">,</span>
+            <span class="s2">"color_bezier"</span><span class="o">:</span> <span class="s2">"#C3C3C3"</span><span class="p">,</span>
+            <span class="s2">"stroke_dasharray"</span><span class="o">:</span> <span class="s2">"16, 8"</span>
+        <span class="p">},</span>
+        <span class="s2">"board"</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">"width"</span><span class="o">:</span> <span class="mi">220</span><span class="p">,</span>
+            <span class="s2">"color_background"</span><span class="o">:</span> <span class="s2">"#FFFFFF"</span><span class="p">,</span>
+            <span class="s2">"color_border"</span><span class="o">:</span> <span class="s2">"#ff8800"</span><span class="p">,</span>
+            <span class="s2">"margin"</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+            <span class="s2">"border"</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+            <span class="s2">"spliter_width"</span><span class="o">:</span> <span class="mi">3</span>
+        <span class="p">},</span>
+        <span class="s2">"effect"</span><span class="o">:</span> <span class="nx">$</span><span class="p">.</span><span class="nx">DEFINED_EFFECT_TYPE</span><span class="p">.</span><span class="nx">fade</span> <span class="o">|</span> <span class="nx">$</span><span class="p">.</span><span class="nx">DEFINED_EFFECT_TYPE</span><span class="p">.</span><span class="nx">translate</span>
+    <span class="p">};</span>
+
+    <span class="c1">// defined effects</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">DEFINED_EFFECT_TYPE</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">curt</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nx">fade</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="nx">slide</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="nx">translate</span><span class="o">:</span> <span class="mi">8</span><span class="p">,</span>
+        <span class="nx">rotateX</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
+        <span class="nx">rotateY</span><span class="o">:</span> <span class="mi">32</span>
+    <span class="p">};</span>
+</pre></div>
+
+<p><strong>Tips:</strong></p>
+
+<ul>
+<li>Some of the <code>effect</code> defined in <code>$.DEFINED_EFFECT_TYPE</code> could be combined.</li>
+<li>Bezier lines could not be dotted.</li>
+</ul><h4>
+<a name="meanings" class="anchor" href="#meanings"><span class="octicon octicon-link"></span></a>Meanings</h4>
+
+<table>
+<thead><tr>
+<th>Option</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>option.data_url</td>
+<td>
+<strong>REQUIRED</strong>. The path of JSON data. Supporting both relative or absolute URL.</td>
+</tr>
+<tr>
+<td>option.container.id</td>
+<td>
+<strong>REQUIRED</strong>. The element ID of containner.</td>
+</tr>
+<tr>
+<td>option.container.width</td>
+<td>[Optional] The width of timeline. Number, in <code>px</code>.</td>
+</tr>
+<tr>
+<td>option.container.height</td>
+<td>[Optional] The height of timeline. Number, in <code>px</code>.</td>
+</tr>
+<tr>
+<td>option.figure.offset.x</td>
+<td>[Optional] Global horizontal offset. Number, in <code>px</code>.</td>
+</tr>
+<tr>
+<td>option.figure.offset.y</td>
+<td>[Optional] Global vertical offset. Number, in <code>px</code>.</td>
+</tr>
+<tr>
+<td><em>option.dots.states.normal._stateId</em></td>
+<td>[Optional] Internal, please ignore it.</td>
+</tr>
+<tr>
+<td>option.dots.states.normal.color</td>
+<td>[Optional] The color of nodes.</td>
+</tr>
+<tr>
+<td>option.dots.states.normal.color_background</td>
+<td>[Optional] The background color of nodes.</td>
+</tr>
+<tr>
+<td>option.dots.states.normal.radius</td>
+<td>[Optional] The radius of nodes. Number, in <code>px</code>.</td>
+</tr>
+<tr>
+<td>option.dots.states.normal.border</td>
+<td>[Optional] The border of nodes. Number, in <code>px</code>.</td>
+</tr>
+<tr>
+<td><em>option.dots.states.active._stateId</em></td>
+<td>[Optional] Internal, please ignore it.</td>
+</tr>
+<tr>
+<td>option.dots.states.active.color</td>
+<td>[Optional] The color of nodes when mouse over.</td>
+</tr>
+<tr>
+<td>option.dots.states.active.color_background</td>
+<td>[Optional] The background color of nodes when mouse over.</td>
+</tr>
+<tr>
+<td>option.dots.states.active.radius</td>
+<td>[Optional] The radius of nodes when mouse over. Number, in <code>px</code>.</td>
+</tr>
+<tr>
+<td>option.dots.states.active.border</td>
+<td>[Optional] The border of nodes when mouse over. Number, in <code>px</code>.</td>
+</tr>
+<tr>
+<td>option.dots.offsetY</td>
+<td>[Optional] The vertical offset of branches. Number, in <code>px</code>.</td>
+</tr>
+<tr>
+<td>option.lines.type</td>
+<td>[Optional] The type of lines. <code>dotted</code> or other values for solid line.</td>
+</tr>
+<tr>
+<td>option.lines.width</td>
+<td>[Optional] The width of lines. Number, in <code>px</code>.</td>
+</tr>
+<tr>
+<td>option.lines.color</td>
+<td>[Optional] The color of solid lines.</td>
+</tr>
+<tr>
+<td>option.lines.color_dotted</td>
+<td>[Optional] The color of dotted lines.</td>
+</tr>
+<tr>
+<td>option.lines.color_bezier</td>
+<td>[Optional] The color of bezier lines.</td>
+</tr>
+<tr>
+<td>option.lines.stoke_dasharray</td>
+<td>[Optional] Makes sinse only if <code>option.lines.type</code>===<code>dotted</code>. The length of real and imaginary parts in dotted lines. Numbers, in <code>px</code>. e.g. <code>16 8</code>.</td>
+</tr>
+<tr>
+<td>option.board.width</td>
+<td>[Optional] The width of detail board. Number, in <code>px</code>.</td>
+</tr>
+<tr>
+<td>option.board.color_background</td>
+<td>[Optional] The background color of detail board.</td>
+</tr>
+<tr>
+<td>option.board.color_border</td>
+<td>[Optional] The border color of detail board.</td>
+</tr>
+<tr>
+<td>option.board.margin</td>
+<td>[Optional] The margin on left/right between the detail board and node. Number, in <code>px</code>.</td>
+</tr>
+<tr>
+<td>option.board.border</td>
+<td>[Optional] The border width of detail board. Number, in <code>px</code>.</td>
+</tr>
+<tr>
+<td>option.board.spliter_width</td>
+<td>[Optional] The width of spliter in detail board. Number, in <code>px</code>.</td>
+</tr>
+<tr>
+<td>option.effect</td>
+<td>[Optional] The effect of displaying detail board. See: <code>$.DEFINED_EFFECT_TYPE</code>
+</td>
+</tr>
+</tbody>
+</table><h3>
+<a name="data-structure" class="anchor" href="#data-structure"><span class="octicon octicon-link"></span></a>Data structure</h3>
+
+<p>The data should be a relative or absolute URL, it will be loaded by Ajax while drawing the timeline.
+Here it is:</p>
+
+<h4>
+<a name="structure" class="anchor" href="#structure"><span class="octicon octicon-link"></span></a>Structure</h4>
+
+<div class="highlight highlight-Javascript"><pre><span class="p">{</span>
+    <span class="s2">"nodes"</span><span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">"nodeId"</span><span class="o">:</span> <span class="c1">// string,</span>
+            <span class="s2">"title"</span><span class="o">:</span> <span class="c1">// string,</span>
+            <span class="s2">"date"</span><span class="o">:</span> <span class="c1">// string in format of date and time, Not used so far.</span>
+            <span class="s2">"percent"</span><span class="o">:</span> <span class="c1">// int,</span>
+            <span class="s2">"description"</span><span class="o">:</span> <span class="c1">// string,</span>
+            <span class="s2">"states"</span><span class="o">:</span> <span class="c1">// JSON object,</span>
+            <span class="s2">"lines"</span><span class="o">:</span> <span class="c1">// JSON object,</span>
+            <span class="s2">"board"</span><span class="o">:</span> <span class="c1">// JSON object,</span>
+            <span class="s2">"nodes"</span><span class="o">:</span><span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s2">"nodeId"</span><span class="o">:</span> <span class="c1">// string,</span>
+                    <span class="s2">"title"</span><span class="o">:</span> <span class="c1">// string,</span>
+                    <span class="s2">"date"</span><span class="o">:</span> <span class="c1">// string in format of date time.,</span>
+                    <span class="s2">"percent"</span><span class="o">:</span> <span class="c1">// int,</span>
+                    <span class="s2">"description"</span><span class="o">:</span> <span class="c1">// string,</span>
+                    <span class="s2">"offsetY"</span><span class="o">:</span> <span class="c1">// "up" or int,</span>
+                    <span class="s2">"states"</span><span class="o">:</span> <span class="c1">// JSON object,</span>
+                    <span class="s2">"lines"</span><span class="o">:</span> <span class="c1">// JSON object,</span>
+                    <span class="s2">"board"</span><span class="o">:</span> <span class="c1">// JSON object,</span>
+                <span class="p">},</span>
+                <span class="c1">// other nodes</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="c1">// other nodes</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+
+<h4>
+<a name="meanings-1" class="anchor" href="#meanings-1"><span class="octicon octicon-link"></span></a>Meanings</h4>
+
+<table>
+<thead><tr>
+<th>Data node</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>nodes.nodeId</td>
+<td>
+<strong>REQUIRED</strong> Globally unique ID, levels ignored.</td>
+</tr>
+<tr>
+<td>nodes.title</td>
+<td>
+<strong>REQUIRED</strong> The title which is displayed on the board as <code>header</code>
+</td>
+</tr>
+<tr>
+<td><em>nodes.date</em></td>
+<td>[Optional] Not used so far.</td>
+</tr>
+<tr>
+<td>nodes.percent</td>
+<td>
+<strong>REQUIRED</strong> The position of node.  Number, between 0 and 100. [0,100]</td>
+</tr>
+<tr>
+<td>nodes.description</td>
+<td>
+<strong>REQUIRED</strong> The detail message which is displayed on the board as <code>content</code>
+</td>
+</tr>
+<tr>
+<td>nodes.states</td>
+<td>[Optional] Same as <code>option.dots.states</code>
+</td>
+</tr>
+<tr>
+<td>nodes.lines</td>
+<td>[Optional] Same as <code>option.lines</code>
+</td>
+</tr>
+<tr>
+<td>nodes.board</td>
+<td>[Optional] Same as <code>option.board</code>
+</td>
+</tr>
+<tr>
+<td>nodes.nodes</td>
+<td>[Optional] Array of branch nodes. They will be displayed as a branch.</td>
+</tr>
+<tr>
+<td>nodes.nodes.nodeId</td>
+<td>
+<strong>REQUIRED if <code>nodes.nodes</code> exists</strong> Same as <code>nodes.nodeId</code>
+</td>
+</tr>
+<tr>
+<td>nodes.nodes.title</td>
+<td>
+<strong>REQUIRED if <code>nodes.nodes</code> exists</strong> Same as <code>nodes.title</code>
+</td>
+</tr>
+<tr>
+<td><em>nodes.nodes.date</em></td>
+<td>[Optional] Same as <code>nodes.date</code>
+</td>
+</tr>
+<tr>
+<td>nodes.nodes.percent</td>
+<td>
+<strong>REQUIRED if <code>nodes.nodes</code> exists</strong> Same as <code>nodes.percent</code>
+</td>
+</tr>
+<tr>
+<td>nodes.nodes.description</td>
+<td>
+<strong>REQUIRED if <code>nodes.nodes</code> exists</strong> Same as <code>nodes.description</code>
+</td>
+</tr>
+<tr>
+<td>nodes.nodes.offsetY</td>
+<td>[Optional] Same as <code>option.dots.offsetY</code> Number, in <code>px</code>, or string <code>up</code>.</td>
+</tr>
+<tr>
+<td>nodes.nodes.states</td>
+<td>[Optional] Same as <code>option.dots.states</code>
+</td>
+</tr>
+<tr>
+<td>nodes.nodes.lines</td>
+<td>[Optional] Same as <code>option.lines</code>
+</td>
+</tr>
+<tr>
+<td>nodes.nodes.board</td>
+<td>[Optional] Same as <code>option.board</code>
+</td>
+</tr>
+</tbody>
+</table><h3>
+<a name="methods" class="anchor" href="#methods"><span class="octicon octicon-link"></span></a>Methods</h3>
+
+<div class="highlight highlight-Javascript"><pre>        <span class="cm">/*</span>
+<span class="cm">         * Draw the timeline.</span>
+<span class="cm">         * */</span>
+        <span class="nx">Draw</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{...}</span>
+</pre></div>
+
+<div class="highlight highlight-Javascript"><pre>        <span class="cm">/*</span>
+<span class="cm">         * Show a specified node.</span>
+<span class="cm">         * @nodeId: *required*, the ID of node.</span>
+<span class="cm">         * @delay: optional, the delay time in ms.</span>
+<span class="cm">         * */</span>
+        <span class="nx">ShowNode</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">nodeId</span><span class="p">,</span> <span class="nx">delay</span><span class="p">)</span> <span class="p">{...}</span>
+</pre></div>
+
+<div class="highlight highlight-Javascript"><pre>        <span class="cm">/*</span>
+<span class="cm">         * Show a specified node without callback.</span>
+<span class="cm">         * @nodeId: *required*, the ID of node.</span>
+<span class="cm">         * @callback: *required*, function(callback_data) {...}</span>
+<span class="cm">         * */</span>
+        <span class="nx">ShowNodeCB</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">nodeId</span><span class="p">,</span> <span class="nx">callback</span><span class="p">,</span> <span class="nx">callback_data</span><span class="p">)</span> <span class="p">{...}</span>
+</pre></div>
+
+<div class="highlight highlight-Javascript"><pre>        <span class="cm">/*</span>
+<span class="cm">         * Hide all nodes with delay.</span>
+<span class="cm">         * @delay: optional, the time of delay, in ms.</span>
+<span class="cm">         * */</span>
+        <span class="nx">HideNode</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">delay</span><span class="p">)</span> <span class="p">{...}</span>
+</pre></div>
+
+<div class="highlight highlight-Javascript"><pre>        <span class="cm">/*</span>
+<span class="cm">         * Hide all nodes with callback.</span>
+<span class="cm">         * @callback: *required*, function(callback_data) {...}</span>
+<span class="cm">         * */</span>
+        <span class="nx">HideNodeCB</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">callback</span><span class="p">,</span> <span class="nx">callback_data</span><span class="p">)</span> <span class="p">{...}</span>
+</pre></div>
+
+<p><strong>Tips:</strong></p>
+
+<ul>
+<li>You can call the method <code>ShowNode</code> as soon as the timeline drawed, like this:</li>
+</ul><div class="highlight highlight-Javascript"><pre><span class="c1">// There must be a delay due to the method `Draw` needs time.</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">UDNZTimeline</span><span class="p">(</span><span class="o">*</span><span class="nx">options</span><span class="o">*</span><span class="p">).</span><span class="nx">Draw</span><span class="p">().</span><span class="nx">ShowNode</span><span class="p">(</span><span class="s1">'node_5'</span><span class="p">,</span><span class="mi">500</span><span class="p">);</span>
+</pre></div>
+
+<ul>
+<li>Perhaps you have noticed that the callback function appear to be earlier than the actual function calls <code>ShowNodeCB</code>/<code>HideNodeCB</code>, which is normal and correct. The reason why this is so, because the methods <code>ShowNodeCB</code>/<code>HideNodeCB</code> just specify an animation "Show"/"Hide", will not do any real work which needs time.</li>
+</ul><h2>
+<a name="change-log" class="anchor" href="#change-log"><span class="octicon octicon-link"></span></a>Change Log</h2>
+
+<h6>
+<a name="v10-2282014" class="anchor" href="#v10-2282014"><span class="octicon octicon-link"></span></a>v1.0 (2/28/2014)</h6>
+
+<ul>
+<li>  First release</li>
+</ul><h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>UDNZTimeline by Austin Luo (uonun) is licensed under a GPL License. Really all that's important to me is that please <a href="http://work.udnz.com/Contact.aspx" title="contact">let me know</a> if you find any bug or improvement.</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
