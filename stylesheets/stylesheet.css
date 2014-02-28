@@ -162,7 +162,7 @@ pre, code {
   color: #222;
   background-color: #fff;
 
-  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+  font-family: "Courier New", Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
   font-size: 14px;
 
   border-radius: 2px;
@@ -264,7 +264,7 @@ Full-Width Styles
 
 .inner {
   position: relative;
-  max-width: 640px;
+  max-width: 960px;
   padding: 20px 10px;
   margin: 0 auto;
 }
